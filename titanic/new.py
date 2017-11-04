@@ -2,10 +2,24 @@
 
 import pandas as pd
 
+# Read CSV into dataframe
 df = pd.read_csv("data/train.csv")
 
-print("Training data size: {}".format(df.shape))
+# Number of records
+entries = df.shape[0]
 
-print("First 5 rows: {}".format(df.head(10)))
+#print("First 5 rows: {}".format(df.head(10)))
 
-print("Survival info: {}".format(df.Survived.value_counts()))
+# Number of people that survived/died
+survival_info = df.Survived.value_counts()
+sex_info = df.Sex.value_counts()
+
+print("Survival rate: {}".format(float(survival_info[1])/entries))
+print("Percent female: {}".format(float(sex_info[1])/entries))
+
+# Ex: Filter dataset
+#print(df[df.Sex=='male'])
+
+#print(df.describe())
+
+df.Fare.hist()
